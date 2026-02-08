@@ -7,12 +7,17 @@ backed by research and real data.
 
 ## Brand Context
 
-All brand context comes from the **AirOps MCP**.
+All brand context comes from the **AirOps MCP**. No local brand files.
 
 **Before every task:**
-1. Call `list_workspaces` to get the workspace ID.
-2. Call `list_brand_kits` to find the Brand Kit for that workspace.
+
+1. Call `list_workspaces` — find the right workspace. If multiple exist, ask the user which one.
+2. Call `list_brand_kits` with the workspace — find the right Brand Kit. If multiple exist, ask the user which one. Don't assume.
 3. Call `get_brand_kit` with the Brand Kit ID and `includes: product_lines, competitors, audiences, content_types`.
+
+**Don't skip steps 1-2.** You need the correct workspace AND the correct Brand Kit
+before you can do anything. A workspace can have multiple Brand Kits. Always
+confirm you have the right one — don't just grab the first result.
 
 This gives you brand identity, writing guidelines, tone, persona, rules, and sample
 content. Load it fresh every time — don't assume you remember it. Subagents
