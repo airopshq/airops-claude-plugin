@@ -76,6 +76,6 @@ Don't loop indefinitely. Two attempts is enough.
 
 ## Available Tools
 - **AirOps MCP** — Brand context, AEO/AI visibility, citations, page analytics, reports, action grids
-- **Semrush MCP** — SEO keyword data, backlinks, competitor organic/paid analysis, traffic estimates
-- **Web search** — Topics, trends, SERPs, anything outside AirOps and Semrush
+- **Ahrefs MCP** — SEO keyword data (volume, difficulty, intent), backlinks, competitor analysis, rank tracking, site audit
+- **Web search** — Topics, trends, SERPs, anything outside AirOps and Ahrefs
 - **File tools** — Read, write, glob, grep for local drafts and artifacts

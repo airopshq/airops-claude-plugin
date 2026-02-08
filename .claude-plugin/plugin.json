@@ -1,7 +1,7 @@
 {
   "name": "airops",
   "description": "Content marketing playbooks with brand-aware AI agents. Playbooks as skills, brand voice in CLAUDE.md, subagents for writing and validation.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "AirOps"
   }
