@@ -1,0 +1,24 @@
+{
+  "name": "airops-plugins",
+  "owner": {
+    "name": "AirOps",
+    "email": "dillont@airops.com"
+  },
+  "metadata": {
+    "description": "AirOps plugins for brand-aware content marketing with AI search data"
+  },
+  "plugins": [
+    {
+      "name": "airops",
+      "source": "./",
+      "description": "Content marketing playbooks with brand-aware AI agents. Uses AirOps MCP for live brand context and AEO data, Semrush MCP for SEO intelligence.",
+      "version": "1.0.0",
+      "author": {
+        "name": "AirOps"
+      },
+      "homepage": "https://airops.com",
+      "keywords": ["content-marketing", "brand-voice", "aeo", "seo", "ai-search"],
+      "category": "content"
+    }
+  ]
+}
