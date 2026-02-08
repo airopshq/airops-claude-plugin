@@ -61,6 +61,25 @@ action type to the finding (losing_ai_visibility, almost_page_one, visibility_ga
 
 Refer to the MCP resources for exact parameter formats, operators, and examples.
 
+## Guardrails
+
+### Skip root / home pages
+
+**Never include root-level pages in recommendations.** When `list_pages` returns
+URLs that are just the domain root (path is `/` or empty — e.g. `example.com/`,
+`www.example.com/`), filter them out of your analysis. Don't surface them in
+"pages that need attention" lists, don't suggest refreshing them, and don't include
+them in action grids. Home pages are not optimizable content pages — their citation
+behavior is driven by brand recognition, not content quality.
+
+### Check before recommending "create"
+
+**Before suggesting any new content creation, you MUST search `list_pages` to
+verify the page doesn't already exist.** Search by `primary_keyword` AND by `url`
+containing relevant terms. For pillar/hub suggestions, also search by `folder_name`.
+If a page exists, recommend refreshing it instead. Show your search evidence in
+your output. See the aeo-data-guide skill for the full "Refresh vs Create" protocol.
+
 ## Cross-referencing
 
 When a question spans both page and AI search data:

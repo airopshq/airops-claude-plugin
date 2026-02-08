@@ -63,6 +63,30 @@ Filter by `domain_category` to segment (Owned, Competitors, Social, etc.).
 
 Refer to the MCP resources for exact parameter formats, operators, and examples.
 
+## Guardrails
+
+### Check before recommending "create"
+
+When your analysis surfaces opportunities (high volume prompts, keyword gaps, topics
+where the brand isn't mentioned), **do NOT jump to "create a pillar page" or "create
+a blog post" without checking `list_pages` first.**
+
+For every keyword or topic you'd recommend content for:
+1. Call `list_pages` filtered by `primary_keyword` matching the keyword
+2. Call `list_pages` filtered by `url` containing relevant terms
+3. If suggesting pillar/hub content, also search by `folder_name`
+
+If a page exists → recommend refreshing it (not creating a new one).
+If no page exists → recommend creating, and state that you verified.
+
+**Show your work.** In your output, say what you searched for and what you found.
+See the aeo-data-guide skill for the full "Refresh vs Create" protocol.
+
+### Skip root / home pages
+
+When citing or referencing pages, skip root-level URLs (domain root, path `/` or
+empty). Don't recommend actions on home pages — they're not optimizable content.
+
 ## Output
 
 1. **What was asked** — restate the question

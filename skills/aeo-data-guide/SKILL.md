@@ -168,31 +168,52 @@ what's happening, the others show why.
 
 ---
 
-## Refresh vs Create (Critical Guardrail)
+## Refresh vs Create (Hard Gate — Not Optional)
 
-When you find a prompt or keyword opportunity (high volume, low mention rate),
-**always check if a page already exists before suggesting action.**
+**You MUST check if a page already exists before suggesting ANY content action.**
+This is a hard gate, not a suggestion. If you skip this step, you will recommend
+creating content that already exists — which is worse than recommending nothing.
 
-### The rule
+### The rule (follow this EVERY TIME)
 
-1. Identify the keyword or topic from the prompt opportunity
-2. Query `list_pages` — search by keyword, URL, or folder to see if the brand
-   already has a page targeting it
-3. **If a page exists** → recommend refreshing/optimizing that page. Don't create
-   a competing page.
-4. **If no page exists** → recommend creating new content for that keyword.
+For **every** keyword, topic, or content gap you identify:
+
+1. Identify the keyword or topic from the opportunity
+2. **Run `list_pages`** — search by `primary_keyword` AND by `url` containing
+   relevant terms. Do both searches. Cast a wide net.
+3. If you're suggesting pillar pages, category pages, or hub content — also search
+   by `folder_name` to see if an entire section already exists
+4. **If a page exists** → recommend refreshing/optimizing that page. Don't create
+   a competing page. Ever.
+5. **If no page exists** (you searched and confirmed) → recommend creating new content.
+6. **If you're not sure** → search more broadly. Don't default to "create."
+
+### What counts as "checking"
+
+A real check means you actually called `list_pages` with relevant filters and
+reviewed the results. It does NOT mean:
+- Assuming no page exists because you haven't seen one
+- Skipping the check because you're making multiple recommendations
+- Checking for one keyword but not the others in a batch of suggestions
+
+**Every recommendation needs its own check.** If you're suggesting 5 pieces of
+content, that's 5 checks. No exceptions.
 
 ### Why this matters
 
-Suggesting "create a blog post about X" when the brand already has a page about X
-leads to duplicate content competing with itself. The existing page might just need
-a refresh — updated stats, better structure for AI citation, stronger authority signals.
+Suggesting "create a pillar page about X" when the brand already has one is
+embarrassing and erodes trust. The existing page might just need a refresh —
+updated stats, better structure for AI citation, stronger authority signals.
+Duplicate content also competes with itself in search rankings.
 
-### How to check
+### How to check (multiple searches)
+
+For each opportunity, run at least two of these:
 
 - `list_pages` filtered by `primary_keyword` matching the prompt's keyword
-- `list_pages` filtered by `url` containing relevant terms
-- If unsure, search broadly by folder (e.g. `/blog/`) and scan for related content
+- `list_pages` filtered by `url` containing relevant terms (e.g. URL contains "pricing" or "comparison")
+- `list_pages` filtered by `folder_name` to scan an entire section (e.g. `/blog/`, `/resources/`, `/guides/`)
+- If the suggestion is a pillar/hub page, check for any existing pages in that topic area — not just exact keyword matches
 
 ### What to recommend
 
@@ -205,13 +226,38 @@ user exactly what to type with the right inputs pre-filled.
 | Page exists, performing well | Leave it alone — focus effort elsewhere | (no action needed) |
 | Page exists, losing citations or traffic | Refresh with current data, optimize for AI | `/airops:refresh-content "<page-url>"` |
 | Page exists, no AI citations at all | Restructure for AI citability | `/airops:refresh-content "<page-url>"` |
-| No page exists, high volume keyword | Create new content targeting this keyword | `/airops:create-blog "<keyword>"` |
+| No page exists, high volume keyword (confirmed via search) | Create new content targeting this keyword | `/airops:create-blog "<keyword>"` |
 | No page exists, low volume keyword | Deprioritize unless strategically important | (no action needed) |
 | Comparing two competitors/products | Create comparison content | `/airops:create-comparison "<brand-a>" "<brand-b>"` |
 | Multiple keywords in a category | Create a roundup or list | `/airops:create-listicle "<topic>"` |
 
 **Format your suggestions as ready-to-run commands** with the actual keyword, URL,
 or topic filled in. The user should be able to copy and paste directly.
+
+**In your output, show your work.** When recommending content creation, explicitly
+state that you checked for existing pages and what you searched for. Example:
+> "Searched `list_pages` for keyword 'aeo tools' and URL containing 'aeo' — no
+> existing page found. Recommend creating: `/airops:create-blog "aeo tools"`"
+
+---
+
+## Skip Root / Home Pages in Recommendations
+
+**Never recommend changes to root-level or home pages** (e.g. `example.com/`,
+`example.com`, `www.example.com/`). Even if their citation rate or traffic is
+declining, suggesting edits to a homepage is not actionable advice — home pages
+serve a different purpose than content pages, and their AI citation behavior is
+driven by brand recognition, not content optimization.
+
+When scanning `list_pages` results:
+- **Filter out** any URL that is just the domain root (path is `/` or empty)
+- **Don't surface** root pages in "pages that need attention" lists
+- **Don't suggest** refreshing or rewriting the homepage
+- If a root page shows up in a smart filter result (e.g. `losing_ai_visibility`),
+  skip it silently — it's noise, not signal
+
+This applies to all recommendations: page-analyst findings, action grids,
+"what should we work on" answers, and any suggested `/airops:refresh-content` commands.
 
 ---
 
@@ -224,3 +270,4 @@ or topic filled in. The user should be able to copy and paste directly.
 - **Don't compare across providers without noting the difference** — each AI has different behavior patterns
 - **Don't act on one signal alone for pages** — always cross-reference AEO + GSC + GA4 before recommending action
 - **Don't guess at metric definitions** — check the AirOps concepts resource if unsure
+- **Don't suggest creating content without checking if it already exists** — see "Refresh vs Create" above. This is a hard requirement, not a suggestion.
