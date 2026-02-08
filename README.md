@@ -59,9 +59,11 @@ The plugin's `.mcp.json` connects to both MCP servers:
 {
   "mcpServers": {
     "airops": {
+      "type": "http",
       "url": "https://app.airops.com/mcp"
     },
     "semrush": {
+      "type": "http",
       "url": "https://mcp.semrush.com/v1/mcp"
     }
   }
