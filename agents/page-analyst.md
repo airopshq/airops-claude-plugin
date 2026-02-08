@@ -1,7 +1,6 @@
 ---
 name: page-analyst
 description: Analyzes page performance — AEO citations, GSC rankings, GA4 traffic — via AirOps MCP.
-tools: Read, Write, Glob, Grep
 model: opus
 ---
 

@@ -1,7 +1,6 @@
 ---
 name: content-writer
 description: Writes content in brand voice. Receives step instructions, session artifacts, and output path from orchestrator.
-tools: Read, Write, Glob, Grep
 model: opus
 ---
 

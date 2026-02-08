@@ -1,7 +1,6 @@
 ---
 name: ai-search-analyst
 description: Analyzes AI search visibility data — prompts, answers, mentions, citations, competitors — via AirOps MCP.
-tools: Read, Write, Glob, Grep
 model: opus
 ---
 

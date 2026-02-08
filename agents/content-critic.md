@@ -1,7 +1,6 @@
 ---
 name: content-critic
 description: Evaluates content against brand voice using brand guidelines.
-tools: Read, Glob, Grep
 model: sonnet
 ---
 
