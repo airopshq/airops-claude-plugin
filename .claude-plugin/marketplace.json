@@ -11,7 +11,7 @@
     {
       "name": "AirOps",
       "source": "./",
-      "description": "Content marketing playbooks with brand-aware AI agents. Uses AirOps MCP for live brand context and AEO data, Semrush MCP for SEO intelligence.",
+      "description": "Content marketing playbooks with brand-aware AI agents.",
       "version": "1.0.0",
       "author": {
         "name": "AirOps"

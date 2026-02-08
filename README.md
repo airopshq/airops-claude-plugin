@@ -26,7 +26,7 @@ This happens at the start of every task, and again when the content-writer or co
 ```
 .claude-plugin/plugin.json      # Manifest
 CLAUDE.md                       # Identity + methodology + AirOps MCP reference
-.mcp.json                       # Connects to AirOps + Semrush MCPs
+.mcp.json                       # Connects to AirOps + Ahrefs MCPs
 skills/
   create-blog/SKILL.md          # Playbook skills (explicit)
   create-comparison/SKILL.md
@@ -48,7 +48,7 @@ README.md
 ### Prerequisites
 
 - An AirOps account with a Brand Kit configured
-- A Semrush account with API access (SEO Business plan + Standard API, or Trends API)
+- An Ahrefs account with API access (Lite plan or higher)
 - Claude Code, Cursor, or another host that supports MCP
 
 ### Connect
@@ -61,9 +61,9 @@ The plugin's `.mcp.json` connects to both MCP servers:
     "type": "http",
     "url": "https://app.airops.com/mcp"
   },
-  "semrush": {
+  "ahrefs": {
     "type": "http",
-    "url": "https://mcp.semrush.com/v1/mcp"
+    "url": "https://api.ahrefs.com/mcp/mcp"
   }
 }
 ```
