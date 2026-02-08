@@ -66,6 +66,8 @@ Users often ask vague things. Here's how to route them:
 - Check pages with smart filters: losing_ai_visibility, citation_rate_decline, almost_page_one
 - Check prompts where brand is NOT mentioned but volume is high (opportunities)
 - Delegate to **page-analyst** for page opportunities, **ai-search-analyst** for prompt gaps
+- For each opportunity, check if a page exists (see Refresh vs Create) and suggest
+  a specific skill the user can run (e.g. `/airops:refresh-content "url"` or `/airops:create-blog "keyword"`)
 
 ### "How do we compare to competitors?"
 - share_of_voice and citation_share by competitor dimension
@@ -194,13 +196,22 @@ a refresh — updated stats, better structure for AI citation, stronger authorit
 
 ### What to recommend
 
-| Situation | Recommendation |
-|-----------|---------------|
-| Page exists, performing well | Leave it alone — focus effort elsewhere |
-| Page exists, losing citations or traffic | Refresh: update content, add current data, optimize for AI |
-| Page exists, no AI citations at all | Optimize: restructure for AI citability (clear answers, authoritative framing) |
-| No page exists, high volume keyword | Create: new content targeting this keyword |
-| No page exists, low volume keyword | Deprioritize unless strategically important |
+When suggesting actions, **point the user to a specific skill they can run.** The
+user can invoke these directly — you can't run them yourself, but you can tell the
+user exactly what to type with the right inputs pre-filled.
+
+| Situation | Recommendation | Suggest to user |
+|-----------|---------------|-----------------|
+| Page exists, performing well | Leave it alone — focus effort elsewhere | (no action needed) |
+| Page exists, losing citations or traffic | Refresh with current data, optimize for AI | `/airops:refresh-content "<page-url>"` |
+| Page exists, no AI citations at all | Restructure for AI citability | `/airops:refresh-content "<page-url>"` |
+| No page exists, high volume keyword | Create new content targeting this keyword | `/airops:create-blog "<keyword>"` |
+| No page exists, low volume keyword | Deprioritize unless strategically important | (no action needed) |
+| Comparing two competitors/products | Create comparison content | `/airops:create-comparison "<brand-a>" "<brand-b>"` |
+| Multiple keywords in a category | Create a roundup or list | `/airops:create-listicle "<topic>"` |
+
+**Format your suggestions as ready-to-run commands** with the actual keyword, URL,
+or topic filled in. The user should be able to copy and paste directly.
 
 ---
 
